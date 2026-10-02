@@ -1,0 +1,66 @@
+from ast import Or
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+
+class Noeud:
+  def __init__(self,noeud):
+    self.noeud=noeud
+    self.liste_enfants=[]
+
+  def ajouter(self,enfant):
+    self.liste_enfants.append(enfant)
+
+  def afficher(self):
+    k=0
+    for i in range(len(self.liste_enfants)):
+      if type(self.liste_enfants[i])==str :
+        print(self.liste_enfants[i], end="")
+        print("(", end="")
+        k+=1
+
+      else :
+        print(self.liste_enfants[i], end="")
+        if ((i+1) in range(len(self.liste_enfants))) :
+          if ((((type(self.liste_enfants[i])==(int or float)) and (type(self.liste_enfants[i+1])==(int or float))))):
+            print(",", end="")
+    for j in range(k):
+      print(")", end="")
+  def Evaluer(self,liste_enfants) :
+    k=0
+    for i in range(len(self.liste_enfants)):
+      if self.liste_enfants[i]=="+" :
+        return "add"
+        k+=1
+      if self.liste_enfants[i]=="-" :
+        return "sub"
+        k+=1
+      if self.liste_enfants[i]=="*" :
+        return "mul"
+        k+=1
+      if self.liste_enfants[i]=="exp" :
+        return "expo"
+        k+=1
+    if (k==0) :
+      return "ValueError"
+
+
+
+
+
+C=Noeud("noeu")
+C.ajouter("exp")
+C.ajouter("+")
+C.ajouter(2)
+
+C.ajouter(4)
+C.afficher()
+'''
+C=Noeud("noeu")
+C.ajouter("exp")
+C.ajouter(2)
+C.ajouter("+")
+C.ajouter("y")
+C.afficher()
+'''
+C.Evaluer("noeu")
